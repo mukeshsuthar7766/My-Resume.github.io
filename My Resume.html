@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mukesh Suthar - Resume </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        :root {
+            --gold: #FFD700;
+            --darkblue: #0a1833;
+            --platinum: #e5e4e2;
+            --glass: rgba(10,24,51,0.85);
+            --shadow: 0 8px 32px 0 rgba(229,228,226,0.10);
+            --text: #f5f5f5;
+            --muted: #b3b3b3;
+            --nav-width: 100px;
+            --nav-bg: rgba(10,24,51,0.7);
+            --nav-active: var(--gold);
+            --nav-inactive: #232946;
+            --divider: linear-gradient(90deg, var(--gold) 0%, var(--darkblue) 100%);
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(120deg, var(--darkblue) 0%, #142850 100%);
+            color: var(--text);
+            overflow-x: hidden;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .lux-container {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            z-index: 1;
+            position: relative;
+        }
+        .lux-nav {
+            display: flex;
+            gap: 1.2rem;
+            background: var(--nav-bg);
+            box-shadow: 0 4px 24px #FFD70022;
+            border-radius: 2.2rem 2.2rem 0 0;
+            padding: 0.8rem 2rem;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(700px, 96vw);
+            z-index: 10;
+            backdrop-filter: blur(8px);
+        }
+        .lux-nav .nav-btn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            width: 2.8em;
+            height: 2.8em;
+            border-radius: 0.7em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            box-shadow: 0 1px 4px #FFD70011;
+            position: relative;
+            margin: 0 0.2em;
+            padding: 0;
+        }
+        .lux-nav .nav-btn.active, .lux-nav .nav-btn:focus {
+            background: var(--gold);
+            color: var(--darkblue);
+            box-shadow: 0 2px 12px #FFD70044;
+        }
+        .lux-nav .nav-btn:hover:not(.active) {
+            background: #FFD70022;
+            color: #fff;
+        }
+        .lux-card {
+            background: var(--glass);
+            border-radius: 2.2rem;
+            box-shadow: var(--shadow), 0 0 0 2px #FFD70044;
+            margin: 2rem auto 7.5rem auto;
+            padding: 3.2rem 5vw 2.2rem 5vw;
+            width: min(96vw, 700px);
+            border: 1.5px solid var(--gold);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+            display: none;
+            animation: fadeInSection 0.7s;
+            position: relative;
+            backdrop-filter: blur(12px);
+        }
+        .lux-card.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes fadeInSection {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .avatar {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            background: var(--glass);
+            color: var(--gold);
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 2px 24px #FFD70055, 0 0 0 4px #FFD70044;
+            border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        .name {
+            font-size: 1.7rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .role {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .contact-info {
+            font-size: 1.08rem;
+            text-align: center;
+            margin-bottom: 1.7rem;
+        }
+        .contact-info div {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            justify-content: center;
+        }
+        .section-title {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .section-title i {
+            color: var(--gold);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 60px;
+            background: var(--divider);
+            border-radius: 2px;
+            margin-left: 10px;
+        }
+        .skills-list, .pharmacy-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .skills-list li, .pharmacy-list li {
+            background: #142850cc;
+            color: var(--gold);
+            padding: 0.7rem 1.5rem;
+            border-radius: 1.1rem;
+            font-size: 1.08rem;
+            font-weight: 700;
+            box-shadow: 0 1px 4px #FFD70011;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .skills-list li:hover, .pharmacy-list li:hover {
+            background: var(--gold);
+            color: var(--darkblue);
+            transform: scale(1.09);
+        }
+        .divider {
+            height: 2px;
+            width: 100%;
+            background: var(--divider);
+            border-radius: 1px;
+            margin: 2rem 0 1.5rem 0;
+            box-shadow: 0 1px 8px #FFD70022;
+        }
+        .timeline {
+            position: relative;
+            margin-left: 0.7rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: -0.6rem;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.2rem;
+            padding-left: 2rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -1.1rem;
+            top: 0.4rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--gold);
+            border: 4px solid var(--gold);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 2px 8px #FFD70022;
+        }
+        .exp-title, .edu-title {
+            font-weight: 700;
+            font-size: 1.13rem;
+            color: var(--gold);
+        }
+        .exp-meta, .edu-meta {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+        .exp-desc, .edu-desc {
+            font-family: 'Inter', Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .lang-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+        .lang-item {
+            background: #142850cc;
+            color: var(--gold);
+            padding: 0.9rem 1.2rem;
+            border-radius: 1rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            box-shadow: 0 1px 4px #FFD70011;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .progress-bar-bg {
+            background: #232946;
+            border-radius: 8px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .lang-progress {
+            height: 10px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--gold) 60%, #232946 100%);
+            width: 0;
+            transition: width 1s;
+        }
+        .footer {
+            text-align: center;
+            padding: 1.1rem 0 0 0;
+            color: var(--gold);
+            font-size: 1rem;
+            background: none;
+            letter-spacing: 1px;
+            margin-top: 2.5rem;
+        }
+        .footer .social {
+            margin-top: 0.5rem;
+        }
+        .footer .social a {
+            color: var(--gold);
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .footer .social a:hover {
+            color: #fff;
+        }
+        /* Table of Contents styles */
+        #contents ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7em;
+        }
+        #contents ul li a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.08em;
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+            transition: color 0.2s;
+        }
+        #contents ul li a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        #downloadBtn {
+            margin-top: 1.5em;
+            background: var(--gold);
+            color: var(--darkblue);
+            border: none;
+            border-radius: 0.7em;
+            padding: 0.7em 1.5em;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        #downloadBtn:hover {
+            background: #fffbe6;
+            color: var(--darkblue);
+        }
+        /* Social media icons */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+        }
+        .social-links a {
+            color: var(--gold);
+            font-size: 2rem;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: #fff;
+        }
+        .sm-username {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-left: 0.3em;
+        }
+        .sm-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            background: var(--gold);
+            color: var(--darkblue);
+            border: none;
+            border-radius: 0.7em;
+            padding: 0.6em 1.3em;
+            font-weight: 700;
+            font-size: 1.08em;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0.3em 0.5em 0.3em 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .sm-btn:hover {
+            background: #fffbe6;
+            color: var(--darkblue);
+        }
+    </style>
+</head>
+<body>
+    <div class="lux-container">
+        <!-- Table of Contents Section -->
+        <section class="lux-card" id="contents" style="margin-bottom:1.5rem;">
+            <div class="section-title"><i class="fa-solid fa-list"></i>Content</div>
+            <ul>
+                <li><a href="#summary"><i class="fa-solid fa-user"></i> My Profile </a></li>
+                <li><a href="#skills"><i class="fa-solid fa-star"></i> Skills </a></li>
+                <li><a href="#pharmacy"><i class="fa-solid fa-prescription-bottle-medical"></i> Pharmacy Credentials </a></li>
+                <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education </a></li>
+                <li><a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience </a></li>
+                <li><a href="#languages"><i class="fa-solid fa-language"></i> Languages </a></li>
+                <li><a href="#contact"><i class="fa-solid fa-address-book"></i> Social Media </a></li>
+            </ul>
+            <button id="downloadBtn">
+                <i class="fa-solid fa-download"></i> Download this Webpage
+            </button>
+        </section>
+        <section class="lux-card active" id="summary">
+            <div class="avatar"> MS </div>
+            <div class="name"> Mukesh Suthar </div>
+            <div class="role"> Pharmacy Assistant </div>
+            <div class="contact-info">
+                <div><i class="fa-solid fa-envelope"></i> mukeshsuthar77766@gmail.com </div>
+                <div><i class="fa-solid fa-phone"></i> +91 7620096428 </div>
+                <div><i class="fa-solid fa-location-dot"></i> Pune - 411046 , Maharashtra </div>
+            </div>
+            <div class="divider"></div>
+            <div class="section-title"><i class="fa-solid fa-user"></i> My Profile </div>
+            Pharmacy Assistant with extensive experience in administrative and retail environments. Proven ability to enhance team performance through effective collaboration and support. Strong problem-solving and conflict resolution skills contribute to a positive customer experience. Seeking more knowledge in pharmacy.
+        </section>
+        <section class="lux-card" id="skills">
+            <div class="section-title"><i class="fa-solid fa-star"></i> Skills </div>
+            <ul class="skills-list">
+                <li><i class="fa-solid fa-people-group"></i>Customer Service</li>
+                <li><i class="fa-solid fa-boxes-stacked"></i> Inventory Control </li>
+                <li><i class="fa-solid fa-pills"></i> Medication Management </li>
+                <li><i class="fa-solid fa-comments"></i> Communication </li>
+                <li><i class="fa-solid fa-eye"></i> Attention To Detail </li>
+                <li><i class="fa-solid fa-keyboard"></i> Data Entry </li>
+            </ul>
+        </section>
+        <section class="lux-card" id="pharmacy">
+            <div class="section-title"><i class="fa-solid fa-prescription-bottle-medical"></i> Pharmacy Credentials & Achievements </div>
+            <ul class="pharmacy-list">
+                <li><i class="fa-solid fa-certificate"></i> Certified in First Aid & CPR </li>
+                <li><i class="fa-solid fa-user-shield"></i> Registered with Pharmacy Council of India </li>
+                <li><i class="fa-solid fa-chart-line"></i> Improved inventory tracking, reducing expired stock by 20% </li>
+                <li><i class="fa-solid fa-laptop-medical"></i> Proficient in pharmacy POS & inventory software </li>
+                <li><i class="fa-solid fa-people-carry-box"></i> Volunteered at community health camps </li>
+                <li><i class="fa-solid fa-book-medical"></i> Attended workshops on medication safety & patient counseling </li>
+            </ul>
+        </section>
+        <section class="lux-card" id="education">
+            <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education and Training </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="edu-title"> Secondary School Certificate (SSC) </div>
+                    <div class="edu-meta"> 2011 - 2021 <br> Goodwill English Medium School </div>
+                    <div class="edu-desc" style="color:#b3b3b3;">
+                        Completed foundational education with a focus on core subjects such as Mathematics, Science, and English. Developed strong study habits, discipline, and participated in various school activities and competitions.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="edu-title"> Higher Secondary Certificate (HSC) </div>
+                    <div class="edu-meta"> 2021 - 2023 <br> Abhinav College Of Art, Commerce & Science </div>
+                    <div class="edu-desc" style="color:#b3b3b3;">
+                        Specialized in Science stream, gaining in-depth knowledge in Biology, Chemistry, and Physics. Engaged in laboratory work, group projects, and seminars, building a solid base for further studies in pharmacy.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="edu-title"> Diploma in Pharmacy (D-Pharm) </div>
+                    <div class="edu-meta">2023 - 2025 <br> Abhinav College Of Pharmacy - Narhe </div>
+                    <div class="edu-desc" style="color:#b3b3b3;">
+                        Pursuing a professional diploma focused on pharmaceutical sciences, drug formulation, and patient care. Acquiring hands-on experience through practical training, internships, and workshops on medication safety and pharmacy operations.
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="lux-card" id="experience">
+            <div class="section-title"><i class="fa-solid fa-briefcase"></i> Experience </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="exp-title"> Health Care Medical </div>
+                    <div class="exp-meta"> Pharmacy Assistant | Pune, India | 02/2024 to 03/2025 </div>
+                    <ul class="exp-desc">
+                        <li> Enhanced sales and customer satisfaction through direct assistance with pharmacy services and product inquiries. </li>
+                        <li> Managed inventory by verifying deliveries, counting stock, and placing orders. </li>
+                        <li> Assisted pharmacy staff in medication preparation and order fulfillment. </li>
+                        <li> Maintained cleanliness and organization of pharmacy counter and surrounding areas. </li>
+                        <li> Tracked medication expiration dates, discarding expired items per regulations. </li>
+                        <li> Monitored inventory levels for medications and supplies to ensure availability. </li>
+                        <li> Verified accuracy of medication orders and entered data into pharmacy system. </li>
+                        <li> Adhered to safety protocols when handling hazardous chemicals, including cleaning solutions. </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="lux-card" id="languages">
+            <div class="section-title"><i class="fa-solid fa-language"></i> Languages </div>
+            <div class="lang-list">
+                <div class="lang-item">
+                    Marwadi: First Language
+                    <div class="progress-bar-bg"><div class="lang-progress" data-width="100"></div></div>
+                </div>
+                <div class="lang-item">
+                    Hindi: Second Language
+                    <div class="progress-bar-bg"><div class="lang-progress" data-width="90"></div></div>
+                </div>
+                <div class="lang-item">
+                    Marathi: Third Language
+                    <div class="progress-bar-bg"><div class="lang-progress" data-width="70"></div></div>
+                </div>
+            </div>
+        </section>
+        <!-- Social Media Section -->
+        <section class="lux-card" id="contact">
+            <div class="section-title"><i class="fa-solid fa-address-book"></i> Social Media </div>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1em;">
+                Connect with me on social media!
+            </p>
+            <div class="contact-info" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.5em; margin-bottom:1.7rem;">
+                <a href="mailto:mukeshsuthar77766@gmail.com" class="sm-btn" title="Email"><i class="fa-solid fa-envelope"></i> Email </a>
+                <a href="tel:+917620096428" class="sm-btn" title="Call"><i class="fa-solid fa-phone"></i> Call </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Pune%2C+INDIA+411046" class="sm-btn" target="_blank" title="Location"><i class="fa-solid fa-location-dot"></i> Location </a>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/mr_mukesh_76666" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i> <span class="sm-mr_mukesh_76666"> @Mr_Mukesh_76666 </span></a>
+                <a href="https://wa.me/917620096428" target="_blank" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> <span class="sm-username"> +91 7620096428 </span></a>
+                <a href="https://in.linkedin.com/in/mukesh-suthar-436098377?trk=people-guest_people_search-card&original_referer=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> <span class="sm-mukesh suthar"> /in/Mukesh Suthar </span></a>
+            </div>
+            <p style="text-align:center; color:var(--muted); margin-top:1em;">
+                Prefer quick replies? <b>Message me on WhatsApp!</b>
+            </p>
+        </section>
+        <nav class="lux-nav">
+            <button class="nav-btn active" data-section="summary" title="My Profile"><i class="fa-solid fa-user"></i></button>
+            <button class="nav-btn" data-section="skills" title="Skills"><i class="fa-solid fa-star"></i></button>
+            <button class="nav-btn" data-section="pharmacy" title="Pharmacy Credentials"><i class="fa-solid fa-prescription-bottle-medical"></i></button>
+            <button class="nav-btn" data-section="education" title="Education"><i class="fa-solid fa-graduation-cap"></i></button>
+            <button class="nav-btn" data-section="experience" title="Experience"><i class="fa-solid fa-briefcase"></i></button>
+            <button class="nav-btn" data-section="languages" title="Languages"><i class="fa-solid fa-language"></i></button>
+            <button class="nav-btn" data-section="contact" title="Social Media"><i class="fa-solid fa-address-book"></i></button>
+        </nav>
+        <div class="footer">
+            &copy; 2025 Mukesh Suthar. All rights reserved.
+            <div class="social">
+                <a href="mailto:mukeshsuthar77766@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="tel:+917620096428" title="Call"><i class="fa-solid fa-phone"></i></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Navigation
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.lux-card');
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                navBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const target = this.getAttribute('data-section');
+                sections.forEach(sec => {
+                    if (sec.id === target) {
+                        sec.classList.add('active');
+                    } else {
+                        sec.classList.remove('active');
+                    }
+                });
+            });
+        });
+        // Animate language bars
+        function animateLangBars() {
+            document.querySelectorAll('.lang-progress').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        }
+        window.addEventListener('load', animateLangBars);
+
+        // Download button
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], {type: 'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'MukeshSutharResume.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    </script>
+</body>
+</html>
